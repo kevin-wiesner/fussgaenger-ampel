@@ -1,11 +1,6 @@
-## Fußgänger-Bedarfsampel (SPS / Structured Text)
+# Fußgänger-Bedarfsampel (SPS / Structured Text)
 
-Beschreibung: „Bedarfsampel für einen Fußgängerüberweg. Autos haben normalerweise Grün; drückt ein Fußgänger den Anforderungstaster, läuft die Umschaltung ab und schaltet danach zurück."
-
-Eine Ampelsteuerung , programmiert in Structured Text (IEC 61131-3) mit dem OpenPLC Editor.
-
-Aktuelle Version: Kreuzung bestehend aus Fußgaenger und Auto Fahrer. 
-
+Bedarfsampel für einen Fußgängerüberweg, programmiert in Structured Text (IEC 61131-3) mit dem OpenPLC Editor. Autos haben normalerweise Grün; drückt ein Fußgänger den Anforderungstaster, läuft die Umschaltung ab und schaltet danach wieder zurück.
 ## Funktion
 
 | Schritt | Auto | Fußgänger | Dauer |
