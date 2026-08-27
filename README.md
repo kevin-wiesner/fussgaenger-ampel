@@ -98,6 +98,31 @@ Bewusst nicht umgesetzt, für eine reale Anlage aber nötig:
 
 ---
 
+## Prüfprotokoll
+
+Getestet im OpenPLC-Simulator, Variablen im Debugger beobachtet und gesetzt.
+
+| Nr. | Testfall | Erwartetes Verhalten | Ergebnis | Datum |
+|---:|---|---|:--:|---|
+| 1 | Kaltstart | `Schritt = 0`, Auto Rot und Gelb, Fußgänger Rot | | |
+| 2 | Nach 2 s | Wechsel auf `Schritt = 1`, Auto Grün | | |
+| 3 | Schritt 1 ohne Tastendruck | bleibt beliebig lange in Grün, kein Zeitablauf | | |
+| 4 | `Taster_FG` kurz auf TRUE | Wechsel auf `Schritt = 2`, Auto Gelb | | |
+| 5 | Schritt 3 | alles Rot, Dauer 1 s | | |
+| 6 | Schritt 4 | Fußgänger Grün, Auto Rot, Dauer 6 s | | |
+| 7 | Schritt 5 | alles Rot, Dauer 1 s, danach zurück auf `Schritt = 0` | | |
+| 8 | Ein Anforderungszyklus ab Tastendruck | 3 + 1 + 6 + 1 + 2 = 13 s bis wieder Auto Grün | | |
+| 9 | Über den ganzen Ablauf | zu keinem Zeitpunkt `Auto_Gruen AND FG_Gruen` | | |
+| 10 | Verriegelung erzwingen: `FG_Gruen` im Debugger auf TRUE forcen, während Auto grün ist | beide Grün werden zurückgesetzt | | |
+| 11 | `Taster_FG` während Schritt 2 bis 5 dauerhaft TRUE | Ablauf läuft normal weiter, keine Doppelauslösung | | |
+| 12 | `Taster_FG` sehr kurz antippen (unter einem Zyklus) | siehe Bekannte Vereinfachungen — Anforderung kann verloren gehen | | |
+
+Testfall 10 prüft die Verriegelung selbst, nicht nur den Normalbetrieb.
+
+Testfall 12 ist bewusst als bekannte Schwäche mit aufgenommen: Es gibt keinen Speicher für die Anforderung, der Taster wird nur im Zustand 1 abgefragt. Ein Protokoll, das nur die funktionierenden Fälle listet, sagt weniger aus als eines, das die Grenzen mit benennt.
+
+---
+
 ## Ausführen
 
 1. Projekt im OpenPLC Editor öffnen
